@@ -1,4 +1,4 @@
-﻿// TYAPIK_1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+// TYAPIK_1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 #include <string>
 #include <iostream>
@@ -22,24 +22,49 @@ void add(vector<key>& temp, int i) {
         }
 }
 
+void print(vector<key>& current) {
+    for (int i = 0; i != current.size(); i++) {
+        cout << current[i].lang << endl;
+    }
+}
+
+void bubble(vector<key>& current) {
+    for (int i = 0; i < current.size(); i++) {
+        int k = i + 1;
+        while (k != current.size()) {
+            if (current[i].lang == current[k].lang) {
+                auto iter = current.cbegin();
+                current.erase(iter + k);
+                k--;
+            }
+            k++;
+        }
+
+    }
+    print(current);
+}
+
+
+
 void conc(vector<key>&al, vector<key>&al_2,int i, int k) { 
-    
-    string temporary;
+    vector<key> current;
+    key temporary;
     int check_2;
     int check_1;
     int check_3=0;
     for (check_2 = 0; k > check_2; check_2++) {
         for (check_1 = 0; i != check_1; check_1++) {
            
-           temporary = al[check_1].lang + al_2[check_2].lang;
-           cout << temporary<<endl;
-           
-
-            
+           temporary.lang = al[check_1].lang + al_2[check_2].lang;
+           current.push_back(temporary);
         }
     }
+    bubble(current);
     
 }
+
+
+
 
 
 int main()
